@@ -1,17 +1,27 @@
-name: Action CI
+name: "action-test"
 
 on: [push]
 
 jobs:
-  hello_world_job:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - run: |
+      npm install
+  test:
+    runs-on: macos-latest
     name: A job to say hello
     steps:
+    - uses: actions/checkout@v1
     - name: Hello world action step
       id: hello
       uses: actions/hello-world-javascript-action@master
       with:
-        who-to-greet: 'Bouba'
-    # Use the output from the `hello` step
+          certificate-path: "path/to/certificate"
+          provisioning-profile-path: "path/to/provisioning/profile"
+          itunes-connect-username: "ic-username"
+          itunes-connect-password: "ic-password"
+        # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"

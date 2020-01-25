@@ -1,13 +1,21 @@
-name: "Hello World"
-description: "Greet someone and record the time"
+name: "Build & Deploy"
+description: "Build and deploy iOS application"
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
+  certificate-path:
+    description: "signing certificate p12 file"
     required: true
-    default: "World"
+  provisioning-profile-path:
+    description: "provisioning profile file"
+    required: true
+  itunes-connect-username:
+    description: "Itunes connect username"
+    required: true
+  itunes-connect-password:
+    description: "Itunes connect password"
+    required: true
 outputs:
   time: # id of output
     description: "The time we greeted you"
 runs:
   using: "node12"
-  main: "index.js"
+  main: "dist/index.js"
